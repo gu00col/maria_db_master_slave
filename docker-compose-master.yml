@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  master:
+    build: .
+    container_name: mariadb_master
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./backup:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    command: [
+      '--server-id=1',
+      '--log-bin=mysql-bin'
+    ]
