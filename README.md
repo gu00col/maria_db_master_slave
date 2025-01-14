@@ -106,7 +106,7 @@ Execute o comando para subir os contêineres:
 bash
 
 ```
-docker-compose -f docker-compose-master-slave.yml up --build
+docker compose -f docker-compose-master-slave.yml up -d --build
 
 ```
 
@@ -172,7 +172,7 @@ Suba o contêiner do Master:
 bash
 
 ```
-docker-compose -f docker-compose-master.yml up --build
+docker compose -f docker-compose-master.yml up -d --build
 
 ```
 
