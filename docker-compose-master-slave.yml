@@ -2,11 +2,12 @@ version: '3.8'
 
 services:
   master:
-    build: .
-    args:
-        - MYSQL_TYPE=${MYSQL_TYPE}
-        - MYSQL_VERSION=${MYSQL_VERSION}
-    container_name: ${CONTAINER_NAME_MASTER}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        MYSQL_TYPE: ${MYSQL_TYPE}
+        MYSQL_VERSION: ${MYSQL_VERSION}
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -22,10 +23,12 @@ services:
     ]
 
   slave:
-    build: .
-    args:
-        - MYSQL_TYPE=${MYSQL_TYPE}
-        - MYSQL_VERSION=${MYSQL_VERSION}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        MYSQL_TYPE: ${MYSQL_TYPE}
+        MYSQL_VERSION: ${MYSQL_VERSION}
     container_name: ${CONTAINER_NAME_SLAVE}
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
