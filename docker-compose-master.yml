@@ -3,7 +3,10 @@ version: '3.8'
 services:
   master:
     build: .
-    container_name: mariadb_master
+    args:
+        - MYSQL_TYPE=${MYSQL_TYPE}
+        - MYSQL_VERSION=${MYSQL_VERSION}
+    container_name: ${CONTAINER_NAME_MASTER}
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -11,6 +14,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - ./backup:/var/lib/mysql
+      - ./config:/etc/mysql/conf.d
     ports:
       - "3306:3306"
     command: [
